@@ -1,24 +1,20 @@
-import {Router} from 'express'
+import * as express from 'express'
+import {Router, Request, Response} from 'express'
 import ExerciseModel from '../models/exercise.model'
 
-const router = Router();
-router.route('/').get((req, res) => {
+const router: Router = express.Router();
+router.route('/').get((req: Request, res: Response) => {
     ExerciseModel.find()
     .then(exercises => res.json(exercises))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
-  const username: string = req.body.username;
-  const description: string = req.body.description;
-  const duration: number = Number(req.body.duration);
-  const date: number = Date.parse(req.body.date);
-
+router.route('/add').post((req: Request, res: Response) => {
   const newExercise = new ExerciseModel({
-    username,
-    description,
-    duration,
-    date,
+    username: req.body.username,
+    description: req.body.description,
+    duration: Number(req.body.duration),
+    date: Date.parse(req.body.date),
   });
 
   newExercise.save()
@@ -26,19 +22,19 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get((req: Request, res: Response) => {
     ExerciseModel.findById(req.params.id)
     .then(exercise => res.json(exercise))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete((req: Request, res: Response) => {
     ExerciseModel.findByIdAndDelete(req.params.id)
     .then(() => res.json('Exercise deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post((req: Request, res: Response) => {
     ExerciseModel.findById(req.params.id)
     .then(exercise => {
       exercise.username = req.body.username;
