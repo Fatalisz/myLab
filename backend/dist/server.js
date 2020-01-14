@@ -14,6 +14,10 @@ mongoose.connect(uri.toString(), { useNewUrlParser: true }).then(() => {
 }, err => {
     console.log(`mongo DB Connection failed: ${err}`);
 });
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
+app.use('/exercises', exercisesRouter);
+app.use('/users', usersRouter);
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
