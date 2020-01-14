@@ -1,10 +1,10 @@
 import mongoose, {Schema, Document} from 'mongoose'
 
 export interface IExercise extends Document {
-    username: String;
-    description: String;
-    duration: Number;
-    date: Date;
+    username: string;
+    description: string;
+    duration: number;
+    date: number;
 }
 
 const exerciseSchema = new Schema({
@@ -16,4 +16,4 @@ const exerciseSchema = new Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model<IExercise>('Exercise', exerciseSchema);
+export default mongoose.model<IExercise>('Exercise', exerciseSchema);
