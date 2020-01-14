@@ -1,7 +1,7 @@
 import mongoose, {Schema, Document} from 'mongoose'
 
 export interface IUser extends Document {
-    username: String;
+    username: string;
 }
 
 const userSchema = new Schema({
