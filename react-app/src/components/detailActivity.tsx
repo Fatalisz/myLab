@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/App.css';
 
-class detailActivityComponent extends React.Component {
+class DetailActivity extends React.Component {
     render() {
         return (
             <div id="divDetailActivity" className="border-gray-light">
@@ -15,4 +15,4 @@ class detailActivityComponent extends React.Component {
         
 }
 
-export default detailActivityComponent;
+export default DetailActivity;
